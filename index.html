@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مفاجأة لرانيا 🖤</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',Tahoma,sans-serif; }
+
+body {
+  background: #000;
+  color: #FFD700;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ========== الصفحة الأولى ========== */
+#page1 {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100vh;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 500;
+  text-align: center;
+}
+#page1 h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  text-shadow: 0 0 20px #FFD700;
+  color: #FFD700;
+}
+.buttons { display: flex; gap: 30px; justify-content: center; }
+.btn {
+  padding: 15px 40px;
+  font-size: 1.5rem;
+  border: 2px solid #FFD700;
+  background: transparent;
+  color: #FFD700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+}
+.btn:hover { background: #FFD700; color: #000; box-shadow: 0 0 30px #FFD700; }
+#realYes {
+  display:none;
+  margin-top: 30px;
+  background: #FFD700;
+  color: #000;
+  font-size: 1.8rem;
+  padding: 20px 60px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 40px #FFD700;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* شاشة الرعب */
+#horrorScreen {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #000;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  animation: shake 0.2s infinite;
+}
+#horrorScreen img { width: 100%; height: 100%; object-fit: cover; }
+@keyframes shake {
+  0%,100% { transform: translate(0,0); }
+  25% { transform: translate(-15px, 15px); }
+  50% { transform: translate(15px, -15px); }
+  75% { transform: translate(-15px, -15px); }
+}
+
+/* ========== الصفحة الثانية ========== */
+#page2 { display: none; }
+
+.bg-slideshow {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  z-index: -2;
+}
+.bg-slide {
+  position: absolute;
+  top:0; left:0;
+  width:100%; height:100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+.bg-slide.active { opacity: 1; }
+
+.overlay {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.65);
+  z-index: -1;
+}
+
+.content {
+  padding: 40px 20px;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.top-title {
+  font-size: 2rem;
+  color: #FFD700;
+  text-shadow: 0 0 20px #FFD700;
+  margin-bottom: 30px;
+  animation: glow 2s infinite alternate;
+}
+.top-title span { font-size: 1.3rem; display:block; margin-top:10px; }
+
+.main-title {
+  font-size: 2.5rem;
+  color: #fff;
+  margin: 40px 0;
+  text-shadow: 0 0 15px #FFD700;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #FFD700; }
+  to { text-shadow: 0 0 30px #FFD700, 0 0 50px #FFD700; }
+}
+
+.poem {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid #FFD700;
+  border-radius: 20px;
+  padding: 25px;
+  margin: 30px auto;
+  max-width: 700px;
+  box-shadow: 0 0 20px rgba(255,215,0,0.3);
+}
+.poem p { margin: 8px 0; font-size: 1.2rem; line-height: 2; color:#fff; }
+.poem.long p { font-size: 1.1rem; }
+
+.section-title {
+  font-size: 1.5rem;
+  margin: 40px 0 20px;
+  color: #FFD700;
+}
+
+#heart-stars {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 40px auto;
+}
+.star {
+  position: absolute;
+  font-size: 2.5rem;
+  color: #FFD700;
+  cursor: pointer;
+  transition: transform 0.3s;
+  text-shadow: 0 0 15px #FFD700;
+  animation: twinkle 1.5s infinite alternate;
+  user-select: none;
+}
+.star:hover { transform: scale(1.5); }
+@keyframes twinkle {
+  from { opacity: 0.7; }
+  to { opacity: 1; text-shadow: 0 0 25px #FFD700, 0 0 40px #FFD700; }
+}
+
+.counter-box {
+  background: rgba(0,0,0,0.6);
+  border: 2px solid #FFD700;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 40px auto;
+  box-shadow: 0 0 25px rgba(255,215,0,0.5);
+}
+#counter { font-size: 1.3rem; color: #fff; margin-top: 10px; line-height: 2; }
+
+.cake {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  font-size: 4rem;
+  animation: bounce 2s infinite;
+  z-index: 10;
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.balloons {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+.balloons span {
+  position: absolute;
+  font-size: 3rem;
+  animation: float 8s linear infinite;
+}
+.balloons span:nth-child(1) { left: 10%; animation-delay: 0s; }
+.balloons span:nth-child(2) { left: 30%; animation-delay: 2s; }
+.balloons span:nth-child(3) { left: 50%; animation-delay: 4s; }
+.balloons span:nth-child(4) { left: 70%; animation-delay: 1s; }
+.balloons span:nth-child(5) { left: 90%; animation-delay: 3s; }
+
+@keyframes float {
+  0% { top: 100%; }
+  100% { top: -10%; }
+}
+
+#modal {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.modal-content {
+  background: #000;
+  border: 2px solid #FFD700;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 0 40px #FFD700;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-content img { width: 100%; border-radius: 15px; margin-bottom: 15px; }
+.modal-content p { color: #fff; font-size: 1.2rem; line-height: 1.8; }
+.close {
+  position: absolute;
+  top: 10px; right: 15px;
+  color: #FFD700;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background: #000;
+  width: 35px; height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #FFD700;
+}
+
+#fireworks {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@media (max-width: 600px) {
+  #heart-stars { width: 300px; height: 300px; }
+  .star { font-size: 1.8rem; }
+  .top-title { font-size: 1.4rem; }
+  .main-title { font-size: 1.6rem; }
+  #page1 h1 { font-size: 1.6rem; }
+  .btn { padding: 12px 30px; font-size: 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== الصفحة الأولى ========== -->
+<div id="page1">
+  <div>
+    <h1 id="question">هل تعلمين ما هو اليوم؟ 🖤</h1>
+    <div class="buttons" id="mainButtons">
+      <button class="btn" id="yesBtn" onclick="handleYes()">نعم</button>
+      <button class="btn" id="noBtn">لا</button>
+    </div>
+    <button id="realYes" onclick="goToSurprise()">اضغطي هنا يا رانيا ❤️</button>
+  </div>
+</div>
+
+<!-- شاشة الرعب -->
+<div id="horrorScreen">
+  <img src="horror.jpg" alt="">
+</div>
+
+<!-- ========== الصفحة الثانية ========== -->
+<div id="page2">
+
+  <div class="bg-slideshow">
+    <div class="bg-slide active" style="background-image:url('bg101.jpg')"></div>
+    <div class="bg-slide" style="background-image:url('bg102.jpg')"></div>
+    <div class="bg-slide" style="background-image:url('bg103.jpg')"></div>
+    <div class="bg-slide" style="background-image:url('bg104.jpg')"></div>
+    <div class="bg-slide" style="background-image:url('bg105.jpg')"></div>
+  </div>
+  <div class="overlay"></div>
+
+  <div class="content">
+
+    <h1 class="top-title">🎉 كل عام وأنتِ أجمل يا رانيا 🎉<br>
+    <span>مرحبًا بسنتك الـ 17 🖤✨</span></h1>
+
+    <h2 class="main-title">إنه عيد ميلادك يا حمقاء 😂❤️</h2>
+
+    <div class="poem short">
+      <p>في يومكِ يا رانيا،</p>
+      <p>تُضيء الدنيا بحضوركِ،</p>
+      <p>وتصبح الأيام أجمل لأنكِ فيها 💛</p>
+    </div>
+
+    <h3 class="section-title">✨ اضغطي على كل نجمة ✨</h3>
+    <div id="heart-stars"></div>
+
+    <div class="poem long">
+      <p>رانيا…</p>
+      <p>في مثل هذا اليوم، وُلدت روحٌ لم أكن أعرف أن حياتي كانت تنتظرها.</p>
+      <p>وُلدتِ أنتِ… بكل ما فيكِ من ضحكة تُنسيني التعب، ونظرة تُشبه الأمان.</p>
+      <p>أنتِ لستِ مجرد صديقة، أنتِ البيت الذي أعود إليه كلما ضاقت بي الدنيا،</p>
+      <p>أنتِ الحكاية التي أحب أن أرويها، والذكرى التي لا أريدها أن تنتهي.</p>
+      <p>أحبكِ حبًا صادقًا، بلا شروط، بلا حدود،</p>
+      <p>أحبكِ كما أنتِ، بكل جنونكِ، بكل هدوئكِ، بكل تفاصيلكِ الصغيرة.</p>
+      <p>وأدعو الله أن يبقيكِ في حياتي دائمًا،</p>
+      <p>وأن يكتب لكِ من السعادة بقدر ما تمنحينني إياها كل يوم.</p>
+      <p>كل عام وأنتِ نبضي، وسندي، وأجمل ما حدث لي 💛🖤</p>
+    </div>
+
+    <div class="counter-box">
+      <h3>💛 منذ أول لقاء لنا 💛</h3>
+      <div id="counter"></div>
+    </div>
+
+  </div>
+
+  <div class="cake">🎂</div>
+  <div class="balloons">
+    <span>🎈</span><span>🎈</span><span>🎈</span><span>🎈</span><span>🎈</span>
+  </div>
+
+  <div id="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <span class="close" onclick="closeModal()">✖</span>
+      <img id="modalImg" src="">
+      <p id="modalText"></p>
+    </div>
+  </div>
+
+  <audio id="bg-music" src="music.mp3" loop></audio>
+  <canvas id="fireworks"></canvas>
+
+</div>
+
+<script>
+// ========== الصفحة الأولى ==========
+let clicks = 0;
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+
+// زر "لا" يهرب
+function moveNoBtn() {
+  const x = Math.random() * (window.innerWidth - 150);
+  const y = Math.random() * (window.innerHeight - 100);
+  noBtn.style.position = 'fixed';
+  noBtn.style.left = x + 'px';
+  noBtn.style.top = y + 'px';
+}
+noBtn.addEventListener('mouseover', moveNoBtn);
+noBtn.addEventListener('touchstart', moveNoBtn);
+noBtn.addEventListener('click', moveNoBtn);
+
+function handleYes() {
+  clicks++;
+  if (clicks < 3) {
+    yesBtn.textContent = clicks === 1 ? "متأكدة؟ 🤨" : "آخر فرصة... 😈";
+  } else {
+    document.getElementById('horrorScreen').style.display = 'flex';
+    setTimeout(() => {
+      document.getElementById('horrorScreen').style.display = 'none';
+      document.getElementById('question').innerHTML = "كنت أمزح فقط 😂❤️<br>اضغطي 👇";
+      document.getElementById('mainButtons').style.display = 'none';
+      document.getElementById('realYes').style.display = 'inline-block';
+    }, 2500);
+  }
+}
+
+function goToSurprise() {
+  document.getElementById('page1').style.display = 'none';
+  document.getElementById('page2').style.display = 'block';
+  const music = document.getElementById('bg-music');
+  music.play().catch(()=>{});
+  initPage2();
+}
+
+// ========== الصفحة الثانية ==========
+function initPage2() {
+  // خلفية الصور
+  const slides = document.querySelectorAll('.bg-slide');
+  let currentSlide = 0;
+  setInterval(() => {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }, 2500);
+
+  // النجوم
+  const starsData = [
+    { img: 's1.jpg', text: '💫 مرآتي التي تعكس كل جميل فيّ، أنتِ الوجه الآخر لروحي.' },
+    { img: 's2.jpg', text: '❄️ حتى في أبرد الأيام، حضنكِ يدفّي قلبي.' },
+    { img: 's3.jpg', text: '🌿 يدكِ في يدي… وهذا وحده يكفيني لأسير في أي طريق.' },
+    { img: 's4.jpg', text: '👑 أنيقة، قوية، ومختلفة… هذه أنتِ يا رانيا.' },
+    { img: 's5.jpg', text: '🖤 مو كل البنات متلك… إنتي وحدة و كفى.' },
+    { img: 's6.jpg', text: '♟️ بتكسري كل شي بيوقف بطريقك، هيك تعلمت منك.' },
+    { img: 's7.jpg', text: '🔥 العالم يحترق ورا ضهرك وأنتي قاعدة بكل هدوء… ملكة فعلاً.' },
+    { img: 's8.jpg', text: '👑 على عرش قلبي، ما في غيرك يا رانيا.' },
+    { img: 's9.jpg', text: '😎 "أنا مو مغرورة، أنا بس واثقة… فرق كبير." — رانيا' },
+    { img: 's10.jpg', text: '🖤 هادئة كالنمر… لكن لمسّها يفقد صوابه.' },
+    { img: 's11.jpg', text: '✨ التاج يليق بكِ، لأنكِ وُلدتِ ملكة.' }
+  ];
+
+  const heartContainer = document.getElementById('heart-stars');
+  const numStars = 11;
+  const centerX = 200;
+  const centerY = 200;
+  const scale = 11;
+
+  for (let i = 0; i < numStars; i++) {
+    const t = (i / numStars) * 2 * Math.PI;
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+    
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.textContent = '⭐';
+    star.style.left = (centerX + x * scale - 20) + 'px';
+    star.style.top = (centerY + y * scale - 20) + 'px';
+    star.style.animationDelay = (i * 0.2) + 's';
+    
+    const data = starsData[i];
+    star.addEventListener('click', () => openModal(data.img, data.text));
+    
+    heartContainer.appendChild(star);
+  }
+
+  // العداد
+  updateCounter();
+  setInterval(updateCounter, 1000);
+
+  // القلوب المتطايرة
+  startFireworks();
+}
+
+function openModal(img, text) {
+  document.getElementById('modalImg').src = img;
+  document.getElementById('modalText').textContent = text;
+  document.getElementById('modal').style.display = 'flex';
+}
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+function updateCounter() {
+  const start = new Date('2024-09-24T00:00:00');
+  const now = new Date();
+  let diff = now - start;
+  
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+  const minutes = Math.floor((diff / (1000*60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+  
+  const years = Math.floor(days / 365);
+  const months = Math.floor((days % 365) / 30);
+  const remainingDays = days - (years * 365) - (months * 30);
+  
+  const counterEl = document.getElementById('counter');
+  if (counterEl) {
+    counterEl.innerHTML = `
+      مرّ على معرفتنا:<br>
+      <b>${years}</b> سنة، <b>${months}</b> شهر، <b>${remainingDays}</b> يوم<br>
+      <b>${hours}</b> ساعة : <b>${minutes}</b> دقيقة : <b>${seconds}</b> ثانية 💛
+    `;
+  }
+}
+
+function startFireworks() {
+  const canvas = document.getElementById('fireworks');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const hearts = [];
+  class Heart {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = canvas.height + 20;
+      this.size = Math.random() * 20 + 15;
+      this.speed = Math.random() * 2 + 1;
+      this.opacity = 1;
+      this.color = Math.random() > 0.5 ? '#FFD700' : '#ff69b4';
+    }
+    update() {
+      this.y -= this.speed;
+      this.opacity -= 0.005;
+    }
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = this.opacity;
+      ctx.fillStyle = this.color;
+      ctx.font = this.size + 'px Arial';
+      ctx.fillText('❤', this.x, this.y);
+      ctx.restore();
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (Math.random() < 0.1) hearts.push(new Heart());
+    hearts.forEach((h, i) => {
+      h.update();
+      h.draw();
+      if (h.opacity <= 0) hearts.splice(i, 1);
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+}
+</script>
+
+</body>
+  </html>
